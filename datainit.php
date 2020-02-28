@@ -60,4 +60,5 @@ for($i=1; $i<=BOOKS_COUNT; $i++){
         $author_id = $author['id'];
         $stmt_rel->execute(array('book_id' => $book_id, 'author_id' => $author_id));
     }
+    echo $i . ' books inited' . "\r";
 }
