@@ -13,7 +13,9 @@ class Author extends Model {
     public function load($data)
     {
         $this->attributes['id'] = $data['id'] ?? null;
+        $this->original['id'] = $data['id'] ?? null;
         $this->attributes['name'] = $data['name'] ?? null;
+        $this->original['name'] = $data['name'] ?? null;
     }
 
 }

@@ -7,3 +7,4 @@ use Bench\Bench;
 $b = new Bench();
 $b->init();
 $b->benchProc();
+$b->benchEloquent();

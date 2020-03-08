@@ -44,7 +44,7 @@ class Bench {
      */
     public function benchEloquent()
     {
-        Book::with('authors')->get();
+        $books = Book::with('authors')->get();
     }
 
     /**
@@ -92,6 +92,7 @@ class Bench {
         foreach ($booksData as $bookData){
             $book = new Book();
             $book->load($bookData);
+            $books[] = $book;
         }
     }
 
