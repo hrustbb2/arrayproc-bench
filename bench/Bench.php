@@ -2,6 +2,7 @@
 
 namespace Bench;
 
+use Lib\Models\Author;
 use Lib\Models\Book;
 use Illuminate\Database\MySqlConnection;
 use Illuminate\Database\ConnectionResolver;
@@ -83,10 +84,14 @@ class Bench {
         $arrayProcessor = new ArrayProcessor();
         $booksData = $arrayProcessor->process($conf, $books)->resultArray();
         $books = [];
+//        foreach ($booksData as $bookData){
+//            $book = new BookEntity();
+//            $book->load($bookData);
+//            $books[] = $book;
+//        }
         foreach ($booksData as $bookData){
-            $book = new BookEntity();
+            $book = new Book();
             $book->load($bookData);
-            $books[] = $book;
         }
     }
 

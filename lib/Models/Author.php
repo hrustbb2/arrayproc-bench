@@ -10,4 +10,10 @@ class Author extends Model {
 
     protected $connection = 'db';
 
+    public function load($data)
+    {
+        $this->attributes['id'] = $data['id'] ?? null;
+        $this->attributes['name'] = $data['name'] ?? null;
+    }
+
 }

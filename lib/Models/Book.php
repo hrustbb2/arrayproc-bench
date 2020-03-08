@@ -15,6 +15,19 @@ class Book extends Model {
         'id', 'name',
     ];
 
+    public function load($data)
+    {
+        $this->attributes['id'] = $data['id'] ?? null;
+        $this->attributes['name'] = $data['name'] ?? null;
+        $authors = [];
+        foreach($data['author'] as $authorData){
+            $author = new Author();
+            $author->load($authorData);
+            $authors[] = $author;
+        }
+        $this->attributes['authors'] = $authors;
+    }
+
     public function authors()
     {
         return $this->belongsToMany(Author::class, 'relations', 'book_id', 'author_id', 'id', 'id');
