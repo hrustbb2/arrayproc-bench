@@ -24,7 +24,7 @@ class Book {
         $this->id = $data['id'];
         $this->name = $data['name'];
         $this->authors = [];
-        foreach ($data['authors'] as $authorData){
+        foreach ($data['author'] as $authorData){
             $author = new Author();
             $author->load($authorData);
             $this->authors[] = $author;

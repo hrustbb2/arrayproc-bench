@@ -120,7 +120,7 @@ class Bench {
         $arrayProcessor = new ArrayProcessor();
         $booksData = $arrayProcessor->process($conf, $books)->resultArray();
         $book = new BookEntity();
-        $book->load($booksData[0]);
+        $book->load(current($booksData));
     }
 
 }
