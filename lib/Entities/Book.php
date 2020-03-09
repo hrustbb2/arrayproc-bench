@@ -31,4 +31,14 @@ class Book {
         }
     }
 
+    public function loadLinear($data)
+    {
+        $this->id = $data['id'];
+        $this->name = $data['name'];
+        $this->authors = [];
+        $author = new Author();
+        $author->load($data['author']);
+        $this->authors[] = $author;
+    }
+
 }

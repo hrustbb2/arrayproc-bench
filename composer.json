@@ -17,6 +17,7 @@
     "laravel/framework": "^5.6",
     "phpbench/phpbench": "^0.17",
     "phpunit/phpunit": "^9.0",
-    "hrustbb2/arrayproc": "dev-master"
+    "hrustbb2/arrayproc": "dev-master",
+    "adbario/php-dot-notation": "^2.2"
   }
 }

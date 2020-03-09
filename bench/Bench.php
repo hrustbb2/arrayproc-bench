@@ -123,4 +123,69 @@ class Bench {
         $book->load(current($booksData));
     }
 
+    /**
+     * @OutputTimeUnit("milliseconds", precision=3)
+     */
+    public function benchDot()
+    {
+        $builder = new Builder($this->connection);
+        $booksRows = $builder->select([
+            'books.id AS id',
+            'books.name AS name',
+            'authors.id AS author.id',
+            'authors.name AS author.name',
+        ])
+            ->from('books')
+            ->leftJoin('relations', 'relations.book_id', '=', 'books.id')
+            ->leftJoin('authors', 'authors.id', '=', 'relations.author_id')
+            ->get()
+            ->all();
+
+        $booksItems = [];
+        foreach ($booksRows as $booksRow) {
+            $dot = dot([]);
+            $dot->set((array)$booksRow);
+            $booksItems[] = $dot->get();
+        }
+
+        $books = [];
+        foreach ($booksItems as $booksItem){
+            $book = new BookEntity();
+            $book->loadLinear($booksItem);
+            $books[] = $book;
+        }
+    }
+
+    /**
+     * @Revs(10)
+     * @OutputTimeUnit("milliseconds", precision=3)
+     */
+    public function benchDotId()
+    {
+        $id = rand(1, 3000);
+        $builder = new Builder($this->connection);
+        $booksRows = $builder->select([
+            'books.id AS id',
+            'books.name AS name',
+            'authors.id AS author.id',
+            'authors.name AS author.name',
+        ])
+            ->from('books')
+            ->leftJoin('relations', 'relations.book_id', '=', 'books.id')
+            ->leftJoin('authors', 'authors.id', '=', 'relations.author_id')
+            ->where('books.id', '=', $id)
+            ->get()
+            ->all();
+
+        $booksItems = [];
+        foreach ($booksRows as $booksRow) {
+            $dot = dot([]);
+            $dot->set((array)$booksRow);
+            $booksItems[] = $dot->get();
+        }
+        $book = new BookEntity();
+        $book->loadLinear($booksItems[0]);
+    }
+
+
 }
