@@ -76,7 +76,7 @@ class Bench {
 
         $conf = [
             'prefix' => 'book_',
-            'author' => [
+            'authors' => [
                 'prefix' => 'author_',
             ]
         ];
@@ -113,7 +113,7 @@ class Bench {
 
         $conf = [
             'prefix' => 'book_',
-            'author' => [
+            'authors' => [
                 'prefix' => 'author_',
             ]
         ];
